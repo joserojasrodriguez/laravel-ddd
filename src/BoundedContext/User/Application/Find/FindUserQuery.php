@@ -1,13 +1,10 @@
 <?php
 declare(strict_types=1);
+namespace Speeden\Src\BoundedContext\User\Application\Find;
 
-namespace Speeden\Src\BoundedContext\User\Infrastructure;
-
-
-use Speeden\Src\BoundedContext\User\Application\GetUserUseCase;
 use Speeden\Src\BoundedContext\User\Infrastructure\Repositories\EloquentUserRepository;
 
-final class GetUserController
+final class FindUserQuery
 {
     public function __construct(private EloquentUserRepository $repository)
     {
@@ -16,8 +13,8 @@ final class GetUserController
 
     public function __invoke(int $id)
     {
-        $getUserUseCase = new GetUserUseCase($this->repository);
+        $getUserUseCase = new FindUser($this->repository);
 
-        return $getUserUseCase->__invoke($id);
+        return $getUserUseCase->searchById($id);
     }
 }

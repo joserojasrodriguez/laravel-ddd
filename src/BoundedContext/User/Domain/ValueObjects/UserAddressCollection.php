@@ -17,7 +17,7 @@ final class UserAddressCollection extends Collection
         return array_map(fn(array $address) => [
             'id'     => $address['id'],
             'name'   => $address['name'],
-            'addres' => $address['address']
+            'address' => $address['address']
         ], $addresses);
     }
 

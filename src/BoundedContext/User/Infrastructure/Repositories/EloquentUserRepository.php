@@ -38,7 +38,8 @@ final class EloquentUserRepository implements UserRepositoryContract
             UserEmailVerifiedDate::fromDateTime($user->email_verified_at->format('Y-m-d H:i:s')),
             new UserPassword($user->password),
             new UserRememberToken($user->remember_token),
-            UserAddressCollection::fromArray($user->address->toArray())
+            UserAddressCollection::fromArray($user->address->toArray()),
+            new UserId($user->id)
         );
 
     }
@@ -49,11 +50,11 @@ final class EloquentUserRepository implements UserRepositoryContract
         $newUser = $this->eloquentUserModel;
 
         $data = [
-            'name' => $user->name()->value(),
-            'email' => $user->email()->value(),
+            'name'              => $user->name()->value(),
+            'email'             => $user->email()->value(),
             'email_verified_at' => $user->emailVerifiedDate()->value(),
-            'password' => $user->password()->value(),
-            'remember_token' => $user->rememberToken()->value(),
+            'password'          => $user->password()->value(),
+            'remember_token'    => $user->rememberToken()->value(),
         ];
 
         $newUser->create($data);
@@ -64,7 +65,7 @@ final class EloquentUserRepository implements UserRepositoryContract
         $userToUpdate = $this->eloquentUserModel;
 
         $data = [
-            'name' => $user->name()->value(),
+            'name'  => $user->name()->value(),
             'email' => $user->email()->value(),
         ];
 

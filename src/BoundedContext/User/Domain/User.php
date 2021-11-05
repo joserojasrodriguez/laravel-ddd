@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace Speeden\Src\BoundedContext\User\Domain;
 
 use Speeden\Src\BoundedContext\User\Domain\ValueObjects\UserAddressCollection;
+use Speeden\Src\BoundedContext\User\Domain\ValueObjects\UserId;
 use Speeden\Src\BoundedContext\User\Domain\ValueObjects\UserName;
 use Speeden\Src\BoundedContext\User\Domain\ValueObjects\UserEmail;
 use Speeden\Src\BoundedContext\User\Domain\ValueObjects\UserPassword;
@@ -19,8 +20,14 @@ final class User
         private UserPassword           $password,
         private UserRememberToken      $rememberToken,
         private ?UserAddressCollection $addressCollection = null,
+        private ?UserId                $userId = null,
     )
     {
+    }
+
+    public function id(): UserId
+    {
+        return $this->userId;
     }
 
     public function name(): UserName

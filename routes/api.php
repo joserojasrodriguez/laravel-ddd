@@ -4,7 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Speeden\Http\Controllers\Address\GetAddressController;
 use Speeden\Http\Controllers\Address\StoreAddressController;
-use Speeden\Http\Controllers\User\GetUserController;
+use Speeden\Http\Controllers\User\FindUserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +21,6 @@ use Speeden\Http\Controllers\User\GetUserController;
  * return $request->user();
  * });*/
 
-Route::get('user/{id}', GetUserController::class);
+Route::get('user/{id}', FindUserController::class);
 Route::get('address/{id}', GetAddressController::class);
 Route::post('user/{user}/address/store', StoreAddressController::class);
